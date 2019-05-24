@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import com.infotel.ejb.IProduitRemote;
 import com.infotel.metier.Magasin;
 import com.infotel.metier.ProduitNonPerissable;
 import com.infotel.metier.ProduitPerissable;
-
+@Named
+@SessionScoped
 public class MagasinBean implements Serializable{
 	@EJB
 	private IProduitRemote service;
@@ -35,7 +38,7 @@ public class MagasinBean implements Serializable{
 					service.ajouterMagasin(magasin);
 					
 				}
-				public List<Magasin>  findAllPMagasins(){
+				public List<Magasin>  findAllMagasins(){
 					return service.findAllMagasins();
 				}
 				public void modifierMagasin() {
