@@ -12,14 +12,82 @@
 
 	<div class="bar">
 		<nav class="container">
-			<a href="/ConfigClientJSFEjb-Grp3">Accueil</a> 
-			<a href="/ConfigClientJSFEjb-Grp3/personne.xhtml">Ajouter Personne</a>
-			<a href="/ConfigClientJSFEjb-Grp3/lotissement.xhtml">Ajouter Lotissement</a> 
-			<a href="/ConfigClientJSFEjb-Grp3/acheterlot.xhtml">Acheter un lot</a> 
-			<a href="/ConfigClientJSFEjb-Grp3/semarier.xhtml">Se marier</a>
+			<a href="/synthese-client-ejb-web-equipe-40">Accueil</a> 
+			<a href="/synthese-client-ejb-web-equipe-40/magasin.xhtml">Ajouter Magasin</a>
+			<a href="/synthese-client-ejb-web-equipe-40/produitPerissable.xhtml">Ajouter produitPerissable</a> 
+			<a href="/synthese-client-ejb-web-equipe-40/produitNonPerissable.xhtml">Ajouter produitNonPerissable</a> 
+			<a href="/synthese-client-ejb-web-equipe-40/ajouterProduit.xhtml">AjouterProduitMagasin</a>
+			<a href="/synthese-client-ejb-web-equipe-40/PrixMagasin.xhtml">PrixMagasin</a>
+			<a href="/synthese-client-ejb-web-equipe-40/suppressionMagasin.xhtml">SupprimerMagasin</a>
 		</nav>
 	</div>
 
-<H1>BIENVENUE DANS L'INDEX</H1>
+<div class="container">
+	<h1>ProduitPerissable</h1>
+	<h:form>
+		<h:panelGrid columns="1" cellpadding="5">
+		
+			<input type="hidden" name="idProduit" value="${idProduit}" />
+			
+			<h:outputLabel value="NomProduit" />
+			<h:inputText id="nomProduit" value="#{produitPerissableBean.produitperissable.nomProduit}" />
+			<h:outputLabel value="STOCK" />
+			<h:inputText id="stock" value="#{produitPerissableBean.produitperissable.stock}" />
+			
+			<h:outputLabel value="Prix" />
+			<h:inputText id="prix" value="#{produitPerissableBean.produitperissable.prix}" />
+			
+			<h:outputLabel value="DateLimiteUtilisation" />
+			<h:inputText id="dateLimiteUtilisation" value="#{produitPerissableBean.produitperissable.dateLimiteUtilisation}" />
+
+			
+		</h:panelGrid>
+		
+		<h:commandButton action="#{produitPerissableBean.ajouterProduitPerissable}" value="ajouter" />
+		
+		<h:commandButton action="#{produitPerissableBean.modifierProduitPerissable}" value="modifier" />
+		
+		<div >
+		
+		<h2>Liste des Magasins</h2>
+		<h:dataTable  value="#{produitPerissableBean.findAllProduitPerissable()}" var="m" border="1" class="table table-striped">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			<h:outputText value="#{m.idProduit}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">NomProduit</f:facet>
+			<h:outputText value="#{m.nomProduit}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">STOCK</f:facet>
+			<h:outputText value="#{m.stock}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">PRIX</f:facet>
+			<h:outputText value="#{m.prix}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">DateLimiteUtilisation</f:facet>
+			<h:outputText value="#{m.dateLimiteUtilisation}"/>
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Supprimer</f:facet>
+			<h:commandLink action="#{produitPerissableBean.supprimerProduitPerissable(m.idProduit)}" value="Supprimer">
+			<f:setPropertyActionListener value="#{m.idProduit}" target="#{produitPerissableBean.produitperissable.idProduit}"></f:setPropertyActionListener>
+			</h:commandLink>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Modifier</f:facet>
+			<h:commandLink action="#{produitPerissableBean.getProduitPerissable(m.idProduit)}" value="Modifier">
+			<f:setPropertyActionListener target="#{produitPerissableBean.produitperissable}" value="#{m}"></f:setPropertyActionListener>
+			</h:commandLink>
+		</h:column>
+		</h:dataTable>
+		</div>	
+</h:form>
+</div>
+
 </body>
 </html>

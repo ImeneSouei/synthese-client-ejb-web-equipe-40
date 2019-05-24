@@ -22,59 +22,65 @@
 		</nav>
 	</div>
 	<div class="container">
-	<h1>Ajout d'un Magasin</h1>
+	<h1>ProduitNonPerissable</h1>
 	<h:form>
 		<h:panelGrid columns="1" cellpadding="5">
 		
-			<input type="hidden" name="idMagasin" value="${idMagasin}" />
+			<input type="hidden" name="idProduit" value="${idProduit}" />
 			
-			<h:outputLabel value="NomMagasin" />
-			<h:inputText id="nomMagasin" value="#{magasinBean.magasin.nomMagasin}" />
+			<h:outputLabel value="NomProduit" />
+			<h:inputText id="nomProduit" value="#{produitNomPerissableBean.produitnomperissable.nomProduit}" />
+			<h:outputLabel value="STOCK" />
+			<h:inputText id="stock" value="#{produitNomPerissableBean.produitnomperissable.stock}" />
 			
-			<h:outputLabel value="CodeMagasin" />
-			<h:inputText id="codeMagasin" value="#{magasinBean.magasin.codeMagasin}" />
+			<h:outputLabel value="Prix" />
+			<h:inputText id="prix" value="#{produitNomPerissableBean.produitnomperissable.prix}" />
 			
-			<h:outputLabel value="PrixDuLocal" />
-			<h:inputText id="prixDuLoCAL" value="#{magasinBean.magasin.prixDuLocal}" />
+			<h:outputLabel value="ModeEmploi" />
+			<h:inputText id="modeEmploi" value="#{produitNomPerissableBean.produitnomperissable.modeEmploi}" />
 
 			
 		</h:panelGrid>
 		
-		<h:commandButton action="#{magasinBean.ajouterMagasin}" value="ajouter" />
+		<h:commandButton action="#{produitNomPerissableBean.ajouterProduitNonPerissable}" value="ajouter" />
 		
-		<h:commandButton action="#{magasinBean.modifierMagasin}" value="modifier" />
+		<h:commandButton action="#{produitNomPerissableBean.modifierProduitNonPerissable}" value="modifier" />
 		
 		<div >
 		
-		<h2>Liste des Magasins</h2>
-		<h:dataTable  value="#{magasinBean.findAllMagasins()}" var="m" border="1" class="table table-striped">
+		<h2>Liste des ProduitNonPerissable</h2>
+		<h:dataTable  value="#{produitNomPerissableBean.findAllProduitNonPerissable()}" var="m" border="1" class="table table-striped">
 		<h:column>
 			<f:facet name="header">ID</f:facet>
-			<h:outputText value="#{m.idMagasin}"/>
+			<h:outputText value="#{m.idProduit}"/>
 		</h:column>
 		<h:column>
-			<f:facet name="header">NomMagasin</f:facet>
-			<h:outputText value="#{m.nomMagasin}"/>
+			<f:facet name="header">NomProduit</f:facet>
+			<h:outputText value="#{m.nomProduit}"/>
 		</h:column>
 		<h:column>
-			<f:facet name="header">CodeMagasin</f:facet>
-			<h:outputText value="#{m.codeMagasin}"/>
+			<f:facet name="header">STOCK</f:facet>
+			<h:outputText value="#{m.stock}"/>
 		</h:column>
 		<h:column>
-			<f:facet name="header">PrixDuLocal</f:facet>
-			<h:outputText value="#{m.prixDuLocal}"/>
+			<f:facet name="header">PRIX</f:facet>
+			<h:outputText value="#{m.prix}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">MODEEmploi</f:facet>
+			<h:outputText value="#{m.modeEmploi}"/>
 		</h:column>
 		
 		<h:column>
 			<f:facet name="header">Supprimer</f:facet>
-			<h:commandLink action="#{magasinBean.supprimerMagasin(m.idMagasin)}" value="Supprimer">
-			<f:setPropertyActionListener value="#{m.idMagasin}" target="#{magasinBean.magasin.idMagasin}"></f:setPropertyActionListener>
+			<h:commandLink action="#{produitNomPerissableBean.supprimerProduitNonPerissable(m.idProduit)}" value="Supprimer">
+			<f:setPropertyActionListener value="#{m.idProduit}" target="#{produitNomPerissableBean.produitnomperissable.idProduit}"></f:setPropertyActionListener>
 			</h:commandLink>
 		</h:column>
 		<h:column>
 			<f:facet name="header">Modifier</f:facet>
-			<h:commandLink action="#{magasinBean.getMagasin(m.idMagasin)}" value="Modifier">
-			<f:setPropertyActionListener target="#{magasinBean.magasin}" value="#{m}"></f:setPropertyActionListener>
+			<h:commandLink action="#{produitNomPerissableBean.getProduitNonPerissable(m.idProduit)}" value="Modifier">
+			<f:setPropertyActionListener target="#{produitNomPerissableBean.produitnomperissable}" value="#{m}"></f:setPropertyActionListener>
 			</h:commandLink>
 		</h:column>
 		</h:dataTable>
