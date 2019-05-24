@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<f:view>
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+</h:head>
+<body>
+
+	<div class="bar">
+		<nav class="container">
+			<a href="/synthese-client-ejb-web-equipe-40">Accueil</a> 
+			<a href="/synthese-client-ejb-web-equipe-40/magasin.xhtml">Ajouter Magasin</a>
+			<a href="/synthese-client-ejb-web-equipe-40/produitPerissable.xhtml">Ajouter produitPerissable</a> 
+			<a href="/synthese-client-ejb-web-equipe-40/produitNonPerissable.xhtml">Ajouter produitNonPerissable</a> 
+			<a href="/synthese-client-ejb-web-equipe-40/ajouterProduit.xhtml">AjouterProduitMagasin</a>
+			<a href="/synthese-client-ejb-web-equipe-40/PrixMagasin.xhtml">PrixMagasin</a>
+			<a href="/synthese-client-ejb-web-equipe-40/suppressionMagasin.xhtml">SupprimerMagasin</a>
+		</nav>
+	</div>
+	<div class="container">
+	<h1>Ajout d'un Magasin</h1>
+	<h:form>
+		<h:panelGrid columns="1" cellpadding="5">
+		
+			<input type="hidden" name="idMagasin" value="${idMagasin}" />
+			
+			<h:outputLabel value="NomMagasin" />
+			<h:inputText id="nomMagasin" value="#{magasinBean.magasin.nomMagasin}" />
+			
+			<h:outputLabel value="CodeMagasin" />
+			<h:inputText id="codeMagasin" value="#{magasinBean.magasin.codeMagasin}" />
+			
+			<h:outputLabel value="PrixDuLocal" />
+			<h:inputText id="prixDuLoCAL" value="#{magasinBean.magasin.prixDuLocal}" />
+
+			
+		</h:panelGrid>
+		
+		<h:commandButton action="#{magasinBean.ajouterMagasin}" value="ajouter" />
+		
+		<h:commandButton action="#{magasinBean.modifierMagasin}" value="modifier" />
+		
+		<div >
+		
+		<h2>Liste des Magasins</h2>
+		<h:dataTable  value="#{magasinBean.findAllMagasins()}" var="m" border="1" class="table table-striped">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			<h:outputText value="#{m.idMagasin}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">NomMagasin</f:facet>
+			<h:outputText value="#{m.nomMagasin}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">CodeMagasin</f:facet>
+			<h:outputText value="#{m.codeMagasin}"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">PrixDuLocal</f:facet>
+			<h:outputText value="#{m.prixDuLocal}"/>
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Supprimer</f:facet>
+			<h:commandLink action="#{magasinBean.supprimerMagasin(m.idMagasin)}" value="Supprimer">
+			<f:setPropertyActionListener value="#{m.idMagasin}" target="#{magasinBean.magasin.idMagasin}"></f:setPropertyActionListener>
+			</h:commandLink>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Modifier</f:facet>
+			<h:commandLink action="#{magasinBean.getMagasin(m.idMagasin)}" value="Modifier">
+			<f:setPropertyActionListener target="#{magasinBean.magasin}" value="#{m}"></f:setPropertyActionListener>
+			</h:commandLink>
+		</h:column>
+		</h:dataTable>
+		</div>	
+</h:form>
+</div>
+
+
+</body>
+</f:view>
+</html>
