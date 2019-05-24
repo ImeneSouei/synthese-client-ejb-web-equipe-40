@@ -20,7 +20,7 @@ public class ProduitPerissableBean implements Serializable{
 		return service;
 	}
 
-	public void setService(IProduitRemote service) {
+	public void setService (IProduitRemote service) {
 		this.service = service;
 	}
 	private ProduitPerissable produitperissable= new ProduitPerissable();

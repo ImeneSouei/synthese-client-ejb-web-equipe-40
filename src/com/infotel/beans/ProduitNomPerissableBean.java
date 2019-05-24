@@ -20,7 +20,7 @@ public class ProduitNomPerissableBean implements Serializable {
 			public IProduitRemote getService() {
 				return service;
 			}
-			public void setService(IProduitRemote service) {
+			public void  setService(IProduitRemote service) {
 				this.service = service;
 			}
 			public static long getSerialversionuid() {
